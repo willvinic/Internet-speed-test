@@ -4,6 +4,10 @@ from tkinter import*
 #iportar pillow
 from PIL import Image, ImageTk
 
+#importando
+import speedtest
+
+
 #cores usadas 
 co0 = "#f0f3f5"  # Preta
 co1 = "#feffff"  # branca
@@ -43,12 +47,23 @@ l_logo_nome.place(x=100, y=15)
 l_logo_linha = Label(frame_logo, width=350 , anchor=NW , font=('Ivy 1'), bg=co2)
 l_logo_linha.place(x=0, y=57)
 
+
+# funcao
+def main():
+    speed = speedtest.Speedtest()
+    download = f"{'{:.2f}'.format(speed.download()/1024/1024)}"
+    upload = f"{'{:.2f}'.format(speed.upload()/1024/1024)}"
+
+    l_download['text'] = download
+    l_upload['text'] = upload
+
+
 #configurando o frame_corpo
 
-l_download = Label(frame_corpo, text='65.7', anchor=NW , font=('arial 28'), bg=co1, fg=co4)
+l_download = Label(frame_corpo, text='', anchor=NW , font=('arial 28'), bg=co1, fg=co4)
 l_download.place(x=44, y=25)
-l_download = Label(frame_corpo, text='Mbps download', anchor=NW , font=('Ivy 10'), bg=co1, fg=co4)
-l_download.place(x=30, y=70)
+l_download_mb = Label(frame_corpo, text='Mbps download', anchor=NW , font=('Ivy 10'), bg=co1, fg=co4)
+l_download_mb.place(x=30, y=70)
 
 imagem_down = Image.open('down.png')
 imagem_down = imagem_down.resize((50,50))
@@ -57,10 +72,10 @@ l_logo_imagem = Label(frame_corpo, height=60, image=imagem_down, compound=LEFT, 
 l_logo_imagem.place(x=130, y=35)
 
 
-l_upload = Label(frame_corpo, text='65.7', anchor=NW , font=('arial 28'), bg=co1, fg=co4)
+l_upload = Label(frame_corpo, text='', anchor=NW , font=('arial 28'), bg=co1, fg=co4)
 l_upload.place(x=235, y=25)
-l_upload = Label(frame_corpo, text='Mbps upload', anchor=NW , font=('Ivy 10'), bg=co1, fg=co4)
-l_upload.place(x=230, y=70)
+l_upload_mb = Label(frame_corpo, text='Mbps upload', anchor=NW , font=('Ivy 10'), bg=co1, fg=co4)
+l_upload_mb.place(x=230, y=70)
 
 imagem_up = Image.open('up.png')
 imagem_up = imagem_up.resize((50,50))
@@ -68,7 +83,8 @@ imagem_up = ImageTk.PhotoImage(imagem_up)
 l_logo_imagem = Label(frame_corpo, height=60, image=imagem_up, compound=LEFT, padx=10, anchor='nw', font=('Ivy 16 bold'), bg=co1, fg=co3)
 l_logo_imagem.place(x=170, y=35)
 
-
+botao_test = Button(frame_corpo, command=main, text='Start test', anchor=NW , font=('Ivy 10 bold'), relief=RAISED, overrelief=RIDGE, bg=co5, fg=co1)
+botao_test.place(x=135, y=100)
 
 
 
