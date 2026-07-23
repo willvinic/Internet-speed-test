@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-def rodar_teste_de_velociadade():
+def rodar_teste_de_velocidade():
     #executa o teste de velocidade e devolve os resultados em Mbps
     teste = speedtest.Speedtest()
 
@@ -23,7 +23,7 @@ def rodar_teste_de_velociadade():
 
 def speedtest_endpoint():
     try:
-        resultado = rodar_teste_de_velociade()
+        resultado = rodar_teste_de_velocidade()
         return jsonify(resultado), 200
     except Exception as erro:
         return jsonify({"erro": f"Falha ao rodar o teste: {type(erro).__name__}: {erro}"}), 503
