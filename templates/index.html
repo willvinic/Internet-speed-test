@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Test</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css' )}}">
+</head>
+<body>
+
+    <div class="card">
+    <header class="logo">
+        <img src="{{url_for('static', filename='img/icon-speed.png' )}}" alt="icone de velocimetro" class="logo-icon">
+        <h1>Speed Test</h1>
+    </header>
+    <div class="divider"></div>
+
+    <main class="resultado">
+        <div class="resultado">
+            <span id="download" class="valor">--</span>
+            <div class="metrica-label">
+                <img src="{{url_for('static', filename='img/down.png' )}}" alt="download" class="icone">
+                <span>Mbps download</span>
+            </div>
+        </div>
+        <div class="metrica">
+            <span id="upload" class="valor">--</span>
+            <div class="metrica-label">
+                <img src="{{url_for('static', filename='img/up.png' )}}" alt="upload" class="icone">
+                <span>Mbps upload</span>
+            </div>
+        </div>
+    </main>
+    <p id="status" class="status"></p>
+    <button id="botao-teste">Start Test</button>
+    </div>
+
+    <script src="{{url_for('static', filename='script.js' )}}"></script>
+    
+</body>
+</html>

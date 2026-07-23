@@ -1,8 +1,11 @@
-from flask import Flask, jsonify 
+from flask import Flask, jsonify, render_template
 import speedtest
 
 app = Flask(__name__)
 
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 def rodar_teste_de_velociadade():
     #executa o teste de velocidade e devolve os resultados em Mbps
