@@ -26,7 +26,7 @@ python main.py
 
 - [x] Versão desktop com Tkinter
 - [ ] API REST em Flask
-- [ ] Frontend web
+- [x] Frontend web
 - [ ] Deploy online
 
 ## Licença
