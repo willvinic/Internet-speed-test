@@ -5,3 +5,23 @@
     --preto: #403d3d;
     --azul: #4a88e8;
 }
+.spinner {
+    border: 3px solid #e0e0e0;
+    border-top-color:var(--azul);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: girar 0.8s linear infinite;
+    margin: 0 auto 12px;
+}
+.spinner.hidden {
+    display: none;
+}
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+@media (max-width: 400px) {
+    .valor {
+        font-size: 26px;
+    }
+}

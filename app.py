@@ -25,8 +25,14 @@ def speedtest_endpoint():
     try:
         resultado = rodar_teste_de_velocidade()
         return jsonify(resultado), 200
+    except speedtest.ConfigRetrievalError:
+        return jsonify({"erro": "Nao foi possivel conectar aos servidores de teste. Verifique suainternet."}), 503
+    except speedtest.SpeedtestBestServerFailure:
+        return jsonify({"erro": "Nao foi possivel encontrar o melhor servidor para o teste. Tente novamente em alguns minutos. "}), 503
+    except speedtest.SpeedtestException as erro:
+        return jsonify({"erro": f"Falha ao rodar o teste: {erro}"}), 503 
     except Exception as erro:
-        return jsonify({"erro": f"Falha ao rodar o teste: {type(erro).__name__}: {erro}"}), 503
+        return jsonify({"erro": f"Falha inesperada: {type(erro).__name__}: {erro}"}), 503
 
 @app.route("/api/health", methods=['GET'])
 def helth():

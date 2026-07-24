@@ -32,3 +32,23 @@ async function rodarteste(){
     }
 }
 botao.addEventListener("click", rodarteste);
+
+const CHAVE_HISTORICO="historico_speedtest";
+const MAX_HISTORICO=10; 
+
+function carregarHistorico(){
+    const bruto = localStorage.getItem(CHAVE_HISTORICO);
+    return bruto ? JSON.parse(bruto) : [];
+}
+
+function salvarHistorico(download, upload){
+    const historico = carregarHistorico();
+    historico.unshift({ data: new Date().toLocaleString("pt-BR"), download, upload });
+    const limitado = historico.slice(0, MAX_HISTORICO);
+    localStorage.setItem(CHAVE_HISTORICO, JSON.stringify(limitado));
+    renderizarHistorico(limitado);
+}
+
+const controlador = new AbortController();
+const tempoLimite = setTimeout(() => controlador.abort(), 40000);
+const resposta = await fetch("/api/speedtest", { signal: controlador.signal });
